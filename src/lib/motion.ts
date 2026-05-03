@@ -1,7 +1,7 @@
 import { Variants } from "framer-motion";
 
 export const fadeUpVariant: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 240 },
   visible: {
     opacity: 1,
     y: 0,
