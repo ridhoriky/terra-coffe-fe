@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   title: "Terra Coffee | Sanctuary in every sip",
   description:
     "A sanctuary from the city's pace. Slow down, connect, and experience artisanal craft.",
+  icons: {
+    other: [
+      {
+        rel: "stylesheet",
+        url: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
