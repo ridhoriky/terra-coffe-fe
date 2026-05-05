@@ -17,6 +17,7 @@ export function HeroSection() {
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEIGO4DXd1JfkgnxOFdTy4R14bcUJ6klo8cBWcquULhBgulQFmIB8-XcknNcjJB6Q9Wzlo6Zk8uOsisw_TNaLRzWdul7htTax3-WaAVdREdc3Q65794_WUwiBz2sRXvnhXx6rFKmfGYRi_LhDad1B5NTEKTPkGNhmG87qXnGOUpoAmMv4lXsZQjMb2pjKm43yaTJ0su1oyfZOi4acajXOC2lBPgF2z8sWVYZR60MCiBb6bjshasNcsOsbczR8ih5JyYxjoEla53wI"
           width={800}
           height={600}
+          loading="eager"
         />
         {/* Overlay */}
         <div className="bg-espresso-dark/60 absolute inset-0 mix-blend-multiply"></div>
