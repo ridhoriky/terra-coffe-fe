@@ -80,7 +80,7 @@ export function TestimonialSection() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUpVariant}
-                className="testimonial-card relative w-full flex-shrink-0 snap-center rounded-2xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm md:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)]"
+                className="testimonial-card relative w-full shrink-0 snap-center rounded-2xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm md:w-[calc(50%-16px)] lg:w-[calc(33.333%-21.33px)]"
               >
                 <Quote className="text-primary absolute top-6 left-6 h-16 w-16 opacity-40" />
                 <div className="text-primary relative mb-6 flex gap-1">
