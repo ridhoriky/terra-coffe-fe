@@ -30,7 +30,7 @@ export function HeroSection() {
         animate="visible"
         variants={fadeUpVariant}
       >
-        <h1 className="font-display-xl md:text-display-xl text-surface-white mb-stack-md text-4xl leading-tight drop-shadow-lg">
+        <h1 className="font-headline-lg md:text-display-xl text-surface-white mb-stack-md text-4xl leading-tight drop-shadow-lg">
           Rooted in Every Sip
         </h1>
         <p className="font-body-lg md:text-body-lg text-warm-ivory mb-stack-lg mx-auto max-w-2xl text-base drop-shadow-md">
