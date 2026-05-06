@@ -33,6 +33,7 @@ export function MenuCard({
         src={imageUrl}
         width={800}
         height={600}
+        loading="eager"
       />
       <div className="flex grow flex-col p-6">
         <div className="mb-2 flex items-baseline justify-between">

@@ -63,6 +63,7 @@ export function AboutSection() {
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvjB_3MPqKkcvzJ5EqF1FMMkdhNRHd-U4SKwbfeVBRZWUnrqBf2T2RiYrGQTqY2T__Zio7B8m4_KO9i6Coyoj4vwAhdpPkU_oKuJfVsGy49X0siwLc30To9pWudEa-oWUhlIc3drXobQNUnFQFCMPx12W-7kCHr1Bt4cH4DpmOM0u7mY5ObzcvwITJCVUULSNN2m23j3Qt_Nq-BbcXWv0TzibYF8RIs7hexlAqdnBQQab7gJkrxbG7uT1LOqe20Fk3d9ZVFITvQTE"
               width={800}
               height={600}
+              loading="eager"
             />
           </motion.div>
         </div>

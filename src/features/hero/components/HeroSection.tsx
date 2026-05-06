@@ -17,6 +17,7 @@ export function HeroSection() {
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEIGO4DXd1JfkgnxOFdTy4R14bcUJ6klo8cBWcquULhBgulQFmIB8-XcknNcjJB6Q9Wzlo6Zk8uOsisw_TNaLRzWdul7htTax3-WaAVdREdc3Q65794_WUwiBz2sRXvnhXx6rFKmfGYRi_LhDad1B5NTEKTPkGNhmG87qXnGOUpoAmMv4lXsZQjMb2pjKm43yaTJ0su1oyfZOi4acajXOC2lBPgF2z8sWVYZR60MCiBb6bjshasNcsOsbczR8ih5JyYxjoEla53wI"
           width={800}
           height={600}
+          loading="eager"
         />
         {/* Overlay */}
         <div className="bg-espresso-dark/60 absolute inset-0 mix-blend-multiply"></div>
@@ -29,7 +30,7 @@ export function HeroSection() {
         animate="visible"
         variants={fadeUpVariant}
       >
-        <h1 className="font-display-xl md:text-display-xl text-surface-white mb-stack-md text-4xl leading-tight drop-shadow-lg">
+        <h1 className="font-headline-lg md:text-display-xl text-surface-white mb-stack-md text-4xl leading-tight drop-shadow-lg">
           Rooted in Every Sip
         </h1>
         <p className="font-body-lg md:text-body-lg text-warm-ivory mb-stack-lg mx-auto max-w-2xl text-base drop-shadow-md">
