@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Eye, EyeOff, Coffee } from "lucide-react";
-import { motion, Transition } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRegister } from "../hooks/useRegister";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,12 +15,12 @@ const fadeUpVariant = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } as Transition,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 export const RegisterForm = () => {
-  const { form, onSubmit, isLoading, error, passwordStrength } = useRegister();
+  const { form, onSubmit, isLoading, error } = useRegister();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -28,13 +28,11 @@ export const RegisterForm = () => {
     formState: { errors },
   } = form;
 
-  const strengthColors = [
-    "bg-neutral-200", // 0
-    "bg-red-500", // 1
-    "bg-amber-500", // 2
-    "bg-emerald-500", // 3
-    "bg-emerald-600", // 4
-  ];
+  const handleGoogleLogin = () => {
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
+    window.location.href = `${apiUrl}/auth/google/callback`;
+  };
 
   return (
     <motion.div
@@ -59,7 +57,7 @@ export const RegisterForm = () => {
         <Button
           variant="outline"
           className="h-12 w-full gap-3 rounded-xl border-neutral-200 font-normal text-neutral-700 hover:bg-neutral-50"
-          onClick={() => console.log("Google Auth Clicked")}
+          onClick={handleGoogleLogin}
           type="button"
         >
           <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -76,7 +74,7 @@ export const RegisterForm = () => {
               fill="#FBBC05"
             />
             <path
-              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               fill="#EA4335"
             />
           </svg>
@@ -173,51 +171,12 @@ export const RegisterForm = () => {
                 )}
               </button>
             </div>
-
-            {/* Password Strength Indicator */}
-            <div className="mt-3 flex h-1.5 gap-1.5">
-              {[1, 2, 3, 4].map((segment) => (
-                <div
-                  key={segment}
-                  className={cn(
-                    "flex-1 rounded-full transition-colors duration-300",
-                    passwordStrength >= segment
-                      ? strengthColors[passwordStrength]
-                      : "bg-neutral-100",
-                  )}
-                />
-              ))}
-            </div>
             <p className="mt-1.5 text-[11px] text-neutral-400">
               Password must be at least 8 characters.
             </p>
             {errors.password && (
               <p className="mt-1 text-xs text-red-500">
                 {errors.password.message}
-              </p>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <Label
-              htmlFor="confirmPassword"
-              className="text-sm font-medium text-neutral-700"
-            >
-              Confirm Password
-            </Label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              {...register("confirmPassword")}
-              className={cn(
-                "focus:ring-primary focus:border-primary h-12 rounded-xl border-neutral-200 transition-all",
-                errors.confirmPassword && "border-red-500 focus:ring-red-500",
-              )}
-            />
-            {errors.confirmPassword && (
-              <p className="mt-1 text-xs text-red-500">
-                {errors.confirmPassword.message}
               </p>
             )}
           </div>

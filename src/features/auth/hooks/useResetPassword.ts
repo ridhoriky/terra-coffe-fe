@@ -6,8 +6,10 @@ import {
   resetPasswordSchema,
   type ResetPasswordInput,
 } from "../schemas/auth.schema";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import api from "@/lib/api";
+import axios from "axios";
 
 export const useResetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,22 +21,11 @@ export const useResetPassword = () => {
   const form = useForm<ResetPasswordInput>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
+      token: token || "",
       password: "",
       confirmPassword: "",
     },
   });
-
-  const password = form.watch("password");
-
-  const passwordStrength = useMemo(() => {
-    const pass = password || "";
-    let strength = 0;
-    if (pass.length >= 8) strength += 1;
-    if (/[A-Z]/.test(pass) && /[a-z]/.test(pass)) strength += 1;
-    if (/\d/.test(pass)) strength += 1;
-    if (/[^A-Za-z0-9]/.test(pass)) strength += 1;
-    return strength;
-  }, [password]);
 
   const onSubmit = async (data: ResetPasswordInput) => {
     if (!token) {
@@ -45,13 +36,20 @@ export const useResetPassword = () => {
     setIsLoading(true);
     setError(null);
     try {
-      console.log("Resetting password with token:", token);
-      // TODO: Implement real API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await api.post("/auth/reset-password", {
+        token,
+        password: data.password,
+      });
       setIsSuccess(true);
     } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Something went wrong.";
+      let message = "Something went wrong.";
+
+      if (axios.isAxiosError(err)) {
+        message = err.response?.data?.error?.message || message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
+
       setError(message);
     } finally {
       setIsLoading(false);
@@ -60,11 +58,9 @@ export const useResetPassword = () => {
 
   return {
     form,
-    control: form.control,
-    onSubmit: form.handleSubmit(onSubmit),
     isLoading,
     error,
     isSuccess,
-    passwordStrength,
+    onSubmit: form.handleSubmit(onSubmit),
   };
 };

@@ -2,33 +2,37 @@
 
 import { useState } from "react";
 import { Coffee, Eye, EyeOff } from "lucide-react";
-import { motion, Transition } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLogin } from "../hooks/useLogin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Controller } from "react-hook-form";
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } as Transition,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 export const LoginForm = () => {
-  const { form, control, onSubmit, isLoading, error } = useLogin();
+  const { form, onSubmit, isLoading, error } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
     formState: { errors },
   } = form;
+
+  const handleGoogleLogin = () => {
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
+    window.location.href = `${apiUrl}/auth/google/callback`;
+  };
 
   return (
     <motion.div
@@ -54,7 +58,7 @@ export const LoginForm = () => {
         <Button
           variant="outline"
           className="h-12 w-full gap-3 rounded-xl border-neutral-200 font-normal text-neutral-700 hover:bg-neutral-50"
-          onClick={() => console.log("Google Login Clicked")}
+          onClick={handleGoogleLogin}
           type="button"
         >
           <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -154,26 +158,7 @@ export const LoginForm = () => {
             )}
           </div>
 
-          <div className="flex items-center justify-between py-1">
-            <div className="flex items-center space-x-2">
-              <Controller
-                name="rememberMe"
-                control={control}
-                render={({ field }) => (
-                  <Checkbox
-                    id="rememberMe"
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                )}
-              />
-              <Label
-                htmlFor="rememberMe"
-                className="cursor-pointer text-sm font-normal text-neutral-600"
-              >
-                Remember me
-              </Label>
-            </div>
+          <div className="flex items-center justify-end py-1">
             <Link
               href="/forgot-password"
               className="text-primary text-sm hover:underline"

@@ -7,6 +7,8 @@ import {
   type ForgotPasswordInput,
 } from "../schemas/auth.schema";
 import { useState } from "react";
+import api from "@/lib/api";
+import axios from "axios";
 
 export const useForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,13 +26,17 @@ export const useForgotPassword = () => {
     setIsLoading(true);
     setError(null);
     try {
-      console.log("Requesting reset link for:", data.email);
-      // TODO: Implement real API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await api.post("/auth/forgot-password", data);
       setIsSuccess(true);
     } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : "Something went wrong.";
+      let message = "Something went wrong.";
+
+      if (axios.isAxiosError(err)) {
+        message = err.response?.data?.error?.message || message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
+
       setError(message);
     } finally {
       setIsLoading(false);
