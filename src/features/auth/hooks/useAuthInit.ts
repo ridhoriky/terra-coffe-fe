@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useAuthStore } from "@/stores/auth.store";
 import api from "@/lib/api";
+import { logger } from "@/lib/logger";
 
 export const useAuthInit = () => {
   const setAuth = useAuthStore((state) => state.setAuth);
@@ -15,10 +16,13 @@ export const useAuthInit = () => {
         const { data } = await api.post("/auth/refresh");
 
         // If successful (even if it's the first login), the backend returns new accessToken + user
-        // Note: Backend might need to be adjusted to return 'user' on refresh if it doesn't already
         setAuth(data.data.accessToken, data.data.user);
-      } catch (error) {
-        // Silently fail if no refresh cookie present
+      } catch (err) {
+        // Log the error but silently fail if no refresh cookie present
+        logger.error(
+          err,
+          "Session restoration failed (likely no valid refresh token)",
+        );
         clearAuth();
       }
     };

@@ -49,7 +49,6 @@ export function ReservationDialog({
   });
 
   const onSubmit = async (data: ReservationFormValues) => {
-    // TODO : API integration
     console.log(data);
     setIsSubmitting(true);
     // Simulate API call

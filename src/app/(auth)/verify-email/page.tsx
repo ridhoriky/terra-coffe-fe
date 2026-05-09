@@ -46,6 +46,13 @@ const VerifyContent = () => {
     verifyEmail();
   }, [searchParams]);
 
+  let title = "Verifying...";
+  if (status === "success") {
+    title = "Verified!";
+  } else if (status === "error") {
+    title = "Verification Failed";
+  }
+
   return (
     <div className="w-full max-w-md rounded-[24px] border border-neutral-100 bg-white p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:p-12">
       <div className="mb-6 flex justify-center">
@@ -67,11 +74,7 @@ const VerifyContent = () => {
       </div>
 
       <h1 className="font-heading text-espresso-dark mb-2 text-2xl font-medium">
-        {status === "loading"
-          ? "Verifying..."
-          : status === "success"
-            ? "Verified!"
-            : "Verification Failed"}
+        {title}
       </h1>
       <p className="mb-8 text-sm text-neutral-500">{message}</p>
 

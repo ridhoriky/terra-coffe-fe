@@ -11,10 +11,9 @@ export const UnverifiedBanner = () => {
   const user = useAuthStore((state) => state.user);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSent, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Only show if authenticated but not verified
   if (!isAuthenticated || !user || user.isVerified) {
     return null;
   }
@@ -52,7 +51,7 @@ export const UnverifiedBanner = () => {
           </p>
         </div>
         <div className="order-3 mt-0 w-auto shrink-0 sm:order-2">
-          {isSent ? (
+          {isSuccess ? (
             <span className="rounded-md border border-emerald-100 bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-600">
               Verification email sent!
             </span>
