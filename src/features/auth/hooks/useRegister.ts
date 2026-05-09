@@ -29,7 +29,6 @@ export const useRegister = () => {
       await api.post("/auth/register", data);
 
       // Redirect to login after successful registration
-      
       router.push("/login?registered=true");
     } catch (err: unknown) {
       let message = "Something went wrong during registration.";
