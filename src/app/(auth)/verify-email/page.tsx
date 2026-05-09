@@ -76,17 +76,17 @@ const VerifyContent = () => {
       <p className="mb-8 text-sm text-neutral-500">{message}</p>
 
       {status === "success" && (
-        <Button asChild className="bg-primary h-12 w-full rounded-xl">
+        <Button className="bg-primary h-12 w-full rounded-xl">
           <Link href="/login">Go to Login</Link>
         </Button>
       )}
 
       {status === "error" && (
         <div className="space-y-4">
-          <Button asChild variant="outline" className="h-12 w-full rounded-xl">
+          <Button variant="outline" className="h-12 w-full rounded-xl">
             <Link href="/resend-verification">Resend Email</Link>
           </Button>
-          <Button asChild variant="ghost" className="w-full">
+          <Button variant="ghost" className="w-full">
             <Link href="/">Back to Home</Link>
           </Button>
         </div>
