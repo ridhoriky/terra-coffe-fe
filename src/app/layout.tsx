@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Noto_Serif } from "next/font/google";
 import "./globals.css";
+import AppProvider from "@/components/shared/AppProvider";
 
 const beVietnamPro = Be_Vietnam_Pro({
   weight: ["400", "600"],
@@ -40,7 +41,7 @@ export default function RootLayout({
       className={`light scroll-smooth ${beVietnamPro.variable} ${notoSerif.variable}`}
     >
       <body className="bg-background text-on-background font-body-md text-body-md flex min-h-full flex-col overflow-x-hidden antialiased">
-        {children}
+        <AppProvider>{children}</AppProvider>
       </body>
     </html>
   );
