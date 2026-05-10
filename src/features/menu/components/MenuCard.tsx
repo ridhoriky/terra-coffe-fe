@@ -3,22 +3,21 @@
 import { motion } from "framer-motion";
 import { cardHover } from "@/lib/motion";
 import Image from "next/image";
+import type { MenuItem } from "../types";
 
 interface MenuCardProps {
-  readonly title: string;
-  readonly price: string;
-  readonly description: string;
-  readonly imageUrl: string;
-  readonly imageAlt: string;
+  readonly item: MenuItem;
 }
 
-export function MenuCard({
-  title,
-  price,
-  description,
-  imageUrl,
-  imageAlt,
-}: MenuCardProps) {
+export function MenuCard({ item }: MenuCardProps) {
+  const formatPrice = (amount: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
   return (
     <motion.div
       className="group bg-surface-white flex flex-col overflow-hidden rounded-xl border border-transparent shadow-[0_8px_24px_rgba(44,26,14,0.04)] hover:border-[#C4622D]/30"
@@ -27,25 +26,40 @@ export function MenuCard({
       whileHover="hover"
       animate="rest"
     >
-      <Image
-        alt={imageAlt}
-        className="h-56 w-full object-cover md:h-48"
-        src={imageUrl}
-        width={800}
-        height={600}
-        loading="eager"
-      />
+      <div className="relative h-56 w-full md:h-48">
+        <Image
+          alt={item.name}
+          className="h-full w-full object-cover"
+          src={item.imageUrl || "/placeholder-coffee.jpg"}
+          width={800}
+          height={600}
+          loading="eager"
+        />
+        {item.discount.active && item.discount.label && (
+          <div className="bg-primary absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
+            {item.discount.label}
+          </div>
+        )}
+      </div>
+
       <div className="flex grow flex-col p-6">
-        <div className="mb-2 flex items-baseline justify-between">
-          <h3 className="font-headline-md text-on-background text-lg font-medium">
-            {title}
+        <div className="mb-2 flex items-baseline justify-between gap-4">
+          <h3 className="font-headline-md text-on-background line-clamp-1 text-lg font-medium">
+            {item.name}
           </h3>
-          <span className="font-body-md text-primary font-semibold">
-            {price}
-          </span>
+          <div className="flex flex-col items-end">
+            {item.discount.active && (
+              <span className="text-on-surface-variant text-[11px] font-medium line-through decoration-red-500/50">
+                {formatPrice(item.price)}
+              </span>
+            )}
+            <span className="font-body-md text-primary font-semibold">
+              {formatPrice(item.finalPrice)}
+            </span>
+          </div>
         </div>
-        <p className="font-body-md text-on-surface-variant text-sm">
-          {description}
+        <p className="font-body-md text-on-surface-variant line-clamp-2 text-sm">
+          {item.description}
         </p>
       </div>
     </motion.div>
