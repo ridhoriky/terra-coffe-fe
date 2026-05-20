@@ -39,8 +39,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`light scroll-smooth ${beVietnamPro.variable} ${notoSerif.variable}`}
+      suppressHydrationWarning
     >
-      <body className="bg-background text-on-background font-body-md text-body-md flex min-h-full flex-col overflow-x-hidden antialiased">
+      <body
+        className="bg-background text-on-background font-body-md text-body-md flex min-h-full flex-col overflow-x-hidden antialiased"
+        suppressHydrationWarning
+      >
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

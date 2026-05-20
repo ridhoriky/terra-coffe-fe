@@ -35,8 +35,8 @@ const images = [
 export function GallerySection() {
   return (
     <section
-      id="ambience"
       className="bg-terra-cream/30 w-full overflow-hidden py-16 md:py-24"
+      id="gallery"
     >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <motion.div

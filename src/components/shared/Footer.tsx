@@ -58,7 +58,7 @@ export function Footer() {
               <span className="material-symbols-outlined">mail</span>
             </Link>
           </div>
-          <p className="text-xs">
+          <p className="text-xs" suppressHydrationWarning>
             © {new Date().getFullYear()} Terra Coffee. Sanctuary in every sip.
           </p>
         </div>

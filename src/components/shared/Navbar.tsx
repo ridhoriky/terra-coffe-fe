@@ -9,10 +9,11 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Reserve", href: "#reserve" },
-    { name: "Our Story", href: "#our-story" },
-    { name: "Visit Us", href: "#visit-us" },
-    { name: "Menu", href: "#menu" },
+    { name: "Reserve", href: "/#reserve" },
+    { name: "Our Story", href: "/#our-story" },
+    { name: "Gallery", href: "/#gallery" },
+    { name: "Menu", href: "/#menu" },
+    { name: "Visit Us", href: "/#visit-us" },
   ];
 
   return (

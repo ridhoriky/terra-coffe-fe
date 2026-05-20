@@ -1,11 +1,14 @@
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
-import { HeroSection } from "@/features/hero/components/HeroSection";
-import { AboutSection } from "@/features/about/components/AboutSection";
-import { MenuSection } from "@/features/menu/components/MenuSection";
-import { GallerySection } from "@/features/gallery";
-import { TestimonialSection } from "@/features/testimonials";
-import { LocationSection } from "@/features/location";
+import { MenuPreviewSection } from "@/features/menu/components/preview/MenuPreviewSection";
+import { STATIC_FEATURED_ITEMS } from "@/features/menu/constants";
+import {
+  HeroSection,
+  AboutSection,
+  GallerySection,
+  TestimonialSection,
+  LocationSection,
+} from "@/features/landing";
 
 export default function Home() {
   return (
@@ -15,7 +18,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <GallerySection />
-        <MenuSection />
+        <MenuPreviewSection items={STATIC_FEATURED_ITEMS} />
         <TestimonialSection />
         <LocationSection />
       </main>

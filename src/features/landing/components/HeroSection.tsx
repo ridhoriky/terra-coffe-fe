@@ -40,7 +40,7 @@ export function HeroSection() {
         </p>
         <div className="flex w-full flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:px-0">
           <Link
-            href="#menu"
+            href="/menu"
             className="font-label-caps text-label-caps bg-primary w-full min-w-[200px] rounded-full px-8 py-4 text-center text-white shadow-[0_8px_24px_rgba(44,26,14,0.25)] transition-all duration-300 hover:-translate-y-1 hover:brightness-90 sm:w-auto"
           >
             Explore Our Menu
