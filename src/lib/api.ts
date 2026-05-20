@@ -36,19 +36,35 @@ api.interceptors.response.use(
         const { data } = await axios.post(
           `${api.defaults.baseURL}/auth/refresh`,
           {},
-          { withCredentials: true },
+          {
+            withCredentials: true,
+            validateStatus: (status) =>
+              (status >= 200 && status < 300) || status === 401,
+          },
         );
 
-        const { accessToken, user } = data.data;
+        if (data.success && data.data?.accessToken) {
+          const { accessToken, user } = data.data;
 
-        // Update store
-        useAuthStore.getState().setAuth(accessToken, user);
+          // Update store
+          useAuthStore.getState().setAuth(accessToken, user);
 
-        // Retry original request
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return api(originalRequest);
+          // Retry original request
+          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+          return api(originalRequest);
+        } else {
+          // Session expired or invalid
+          useAuthStore.getState().clearAuth();
+          if (
+            typeof window !== "undefined" &&
+            !window.location.pathname.includes("/login")
+          ) {
+            window.location.href = "/login";
+          }
+          return Promise.reject(error);
+        }
       } catch (refreshError) {
-        // Refresh failed (e.g. cookie expired) -> Clear auth and redirect
+        // Network or server error during refresh
         useAuthStore.getState().clearAuth();
         return Promise.reject(refreshError);
       }

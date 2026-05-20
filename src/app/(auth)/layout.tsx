@@ -37,7 +37,7 @@ export default function AuthLayout({
             Support
           </Link>
         </div>
-        <p className="text-xs text-neutral-400">
+        <p className="text-xs text-neutral-400" suppressHydrationWarning>
           © {currentYear} Terra Coffee. All rights reserved.
         </p>
       </footer>

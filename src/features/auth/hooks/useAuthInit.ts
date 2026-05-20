@@ -2,31 +2,49 @@
 
 import { useEffect } from "react";
 import { useAuthStore } from "@/stores/auth.store";
-import api from "@/lib/api";
+import axios from "axios";
 import { logger } from "@/lib/logger";
 
 export const useAuthInit = () => {
   const setAuth = useAuthStore((state) => state.setAuth);
   const clearAuth = useAuthStore((state) => state.clearAuth);
+  const setInitializing = useAuthStore((state) => state.setInitializing);
 
   useEffect(() => {
     const initializeAuth = async () => {
-      try {
-        // Attempt to refresh session on mount
-        const { data } = await api.post("/auth/refresh");
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 
-        // If successful (even if it's the first login), the backend returns new accessToken + user
-        setAuth(data.data.accessToken, data.data.user);
+      try {
+        // Use global axios to bypass interceptors for the initial silent check
+        // validateStatus allows 401 to be handled as a valid response to prevent Axios console noise
+        const response = await axios.post(
+          `${apiUrl}/auth/refresh`,
+          {},
+          {
+            withCredentials: true,
+            validateStatus: (status) =>
+              (status >= 200 && status < 300) || status === 401,
+          },
+        );
+
+        if (response.status === 200 && response.data.success) {
+          setAuth(response.data.data.accessToken, response.data.data.user);
+        } else {
+          logger.info("No active session found (guest user)");
+          clearAuth();
+        }
       } catch (err) {
-        // Log the error but silently fail if no refresh cookie present
         logger.error(
+          "Session restoration failed due to network or server error:",
           err,
-          "Session restoration failed (likely no valid refresh token)",
         );
         clearAuth();
+      } finally {
+        setInitializing(false);
       }
     };
 
     initializeAuth();
-  }, [setAuth, clearAuth]);
+  }, [setAuth, clearAuth, setInitializing]);
 };
