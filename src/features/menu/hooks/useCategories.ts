@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import type { Category } from "../types";
@@ -11,7 +13,7 @@ export const useCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await api.get("/menu/categories");
+        const { data } = await api.get("/categories");
         setCategories(data.data);
       } catch (err) {
         logger.error(err, "Failed to fetch categories");

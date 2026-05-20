@@ -1,0 +1,186 @@
+import type { MenuItem } from "./types";
+
+const MOCK_DATE = "2026-05-19T00:00:00.000Z";
+
+export const STATIC_FEATURED_ITEMS: MenuItem[] = [
+  {
+    id: "1",
+    name: "Terra Signature Espresso",
+    slug: "terra-signature-espresso",
+    price: 45000,
+    finalPrice: 45000,
+    description:
+      "Our house blend, featuring notes of dark cocoa, toasted hazelnut, and a hint of wild berry.",
+    imageUrl:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuD7UCs7OuD-IPy6oK1INTMOJfW2SHyD0FhTz2M5c9NHZj3uu5EyvuN6XoU6TbxwaNWV6ZNSZMWLIZ3HMfJsgJzxw2NHrbOmDqLENKVX5OriWARpUWSg-XpISO0oSsYeigzHxaLEWQ4tmFiR122p_B9wSXxEDWUCzcwmsny48vU83q6LLrd5jBATJ-V7j7wk3bPw7XNV7aM3QXkfy7lEZCxriHhMTUmcLogVO2kxGW8WMdk8M9N6cd42gSuwIUSwfP1XLpIEetlJR_k",
+    category: {
+      id: "cat-espresso",
+      name: "Espresso",
+      slug: "espresso",
+    },
+    calories: 5,
+    tags: ["Signature", "House Blend"],
+    isAvailable: true,
+    isFeatured: true,
+    discount: {
+      active: false,
+      type: null,
+      value: null,
+      label: null,
+      endsAt: null,
+    },
+    sortOrder: 1,
+    createdAt: MOCK_DATE,
+    updatedAt: MOCK_DATE,
+  },
+  {
+    id: "2",
+    name: "Brown Sugar Oat Latte",
+    slug: "brown-sugar-oat-latte",
+    price: 60000,
+    finalPrice: 60000,
+    description:
+      "Creamy oat milk perfectly balanced with house-made caramelized brown sugar syrup.",
+    imageUrl:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAIDVcJaRj5CAVMdD0WETSiOQfCqwHsm6IaihfxK1XXA2MG4fGuF3U3CbnpJDNBkmO2bmWRVpOwWmYabQfYafM3BfV4uCN9fHa4d2lHABhGLMKCE0AvbVJ_AXcJoxVMlz8yhjG6lDOg0zhXq2uXe7ku1SVdukZgWd0Z_iErriGyGgAejgiBJ_8D5oP_7LNYMANTKhgc_jveNpwopiBEWj55SrQNfOFbFZbPPYQPUenG1-ruKWH5wGnYMdEwVmIV9pMO-D6nVrM_xTA",
+    category: {
+      id: "cat-latte",
+      name: "Latte",
+      slug: "latte",
+    },
+    calories: 190,
+    tags: ["Latte", "Oat Milk"],
+    isAvailable: true,
+    isFeatured: true,
+    discount: {
+      active: false,
+      type: null,
+      value: null,
+      label: null,
+      endsAt: null,
+    },
+    sortOrder: 2,
+    createdAt: MOCK_DATE,
+    updatedAt: MOCK_DATE,
+  },
+  {
+    id: "3",
+    name: "Cold Brew Reserve",
+    slug: "cold-brew-reserve",
+    price: 55000,
+    finalPrice: 55000,
+    description:
+      "Steeped for 24 hours, delivering a remarkably smooth, low-acidity profile with chocolate undertones.",
+    imageUrl:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDJwbgpDuMEciJ4iAtUTsnHF3AIRhOoyJajbtAv7SSoJqhZUeit6X3bZUShkp4RDaS5_1vCRf-y4iEq3h7XMYykF6FKX5VF6dOE5_cpvL8laWM34uM1ehgnqFJxyCYKKnI1qwW0AKNFadMMVdJxvcfayGoDyWcqQKcVe_1kMXNhPoyMOEF9AyUVT3bXKw0xxZ0NiVKG8CZxFT96TmMubzm5w0-TjL2Pdx96SBe3AEqS3RlGb3qy0YUdIgyUsRXAmJnwgYW2s6w7JtA",
+    category: {
+      id: "cat-coldbrew",
+      name: "Cold Brew",
+      slug: "cold-brew",
+    },
+    calories: 15,
+    tags: ["Cold Brew", "Reserve"],
+    isAvailable: true,
+    isFeatured: true,
+    discount: {
+      active: false,
+      type: null,
+      value: null,
+      label: null,
+      endsAt: null,
+    },
+    sortOrder: 3,
+    createdAt: MOCK_DATE,
+    updatedAt: MOCK_DATE,
+  },
+  {
+    id: "4",
+    name: "Matcha Mist Latte",
+    slug: "matcha-mist-latte",
+    price: 65000,
+    finalPrice: 65000,
+    description:
+      "Ceremonial grade matcha whisked to perfection, served with lightly sweetened steamed milk.",
+    imageUrl:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAspiS0WQRgcGeP63WCdJj9n91wSNQ0T1C448xgjZDGajpC_xQeXvRmVs_zsMu-lgg60U67Bu43sE0jfU8FulrWwZUfa58hFAgoS2ILQGO5MU5m6KdB2lGiZFTA6I6ecZwalbcyzREByhKOHPK1TzRrVA2z-188zRVIo4OcwiVHcQuqrLC8Jp9MLJjWHWH_IHs_3vDfW1jKnPlvOkgZsY4KB_puHcIiCV7391thNsHv2eejdzAQNuDUrKv7VEBtFTu6s7SDiVNvJBk",
+    category: {
+      id: "cat-matcha",
+      name: "Matcha",
+      slug: "matcha",
+    },
+    calories: 160,
+    tags: ["Matcha", "Latte"],
+    isAvailable: true,
+    isFeatured: true,
+    discount: {
+      active: false,
+      type: null,
+      value: null,
+      label: null,
+      endsAt: null,
+    },
+    sortOrder: 4,
+    createdAt: MOCK_DATE,
+    updatedAt: MOCK_DATE,
+  },
+  {
+    id: "5",
+    name: "Honey Cortado",
+    slug: "honey-cortado",
+    price: 50000,
+    finalPrice: 50000,
+    description:
+      "Equal parts espresso and steamed milk, kissed with a touch of local wildflower honey.",
+    imageUrl:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuALjNMCNyCdvYWbKmqx0AvgZTk0DZGO3etE5KHM-9PeGX-iEc1qw2X2ioAImw4MzhpYcztVPjeOtKOvi8gx5UAq8q13LrrvBE5oqyspUPUl7-BYNDVrdsXmFuEI7vXRCZUsjOtt-9qQQwcvOQOT0csAGD0uH47PK3p1rWahBcuPmXlZ72y0_m7P9NGQvbNw0CJRvxv1cbO47uioa0Yf7SoxmgprHMIUbGR2iFtfa6gfExxgDd70PgFnHUnw9EVI0XCkzNpzSYap7tA",
+    category: {
+      id: "cat-cortado",
+      name: "Cortado",
+      slug: "cortado",
+    },
+    calories: 80,
+    tags: ["Cortado", "Honey"],
+    isAvailable: true,
+    isFeatured: true,
+    discount: {
+      active: false,
+      type: null,
+      value: null,
+      label: null,
+      endsAt: null,
+    },
+    sortOrder: 5,
+    createdAt: MOCK_DATE,
+    updatedAt: MOCK_DATE,
+  },
+  {
+    id: "6",
+    name: "Seasonal Pourover",
+    slug: "seasonal-pourover",
+    price: 70000,
+    finalPrice: 70000,
+    description:
+      "A rotating selection of single-origin beans, meticulously brewed to highlight distinct regional flavors.",
+    imageUrl:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAC8xxdmnU4XI90nOK_K9i6kv7d4le4cCa_7zySslWb1r2LJP-ATCGQUeQE-bkze9PuDyyHV8DfQO7qI0-QsBR8sWgQtM2xZPPfsgNvqbev-iAJ-wMsJk6jmqDWwKi3KRIWG3mTAImaGkYU14FgGxTDDAGOGE0JylhG6STQ7Uiff-Mw7Ar-4Rgrf3hSj9fnWAgTEhciV9Yl7z6mQ4g4cOWKFjAW2t31DZ1tpLpXb8AiUPDDMMdq_sLWjXXKMp8HZoD_uQotO1WSv_U",
+    category: {
+      id: "cat-pourover",
+      name: "Pourover",
+      slug: "pourover",
+    },
+    calories: 10,
+    tags: ["Pourover", "Seasonal"],
+    isAvailable: true,
+    isFeatured: true,
+    discount: {
+      active: false,
+      type: null,
+      value: null,
+      label: null,
+      endsAt: null,
+    },
+    sortOrder: 6,
+    createdAt: MOCK_DATE,
+    updatedAt: MOCK_DATE,
+  },
+];

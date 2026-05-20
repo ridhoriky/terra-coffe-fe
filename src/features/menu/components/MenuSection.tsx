@@ -10,7 +10,15 @@ import { useCategories } from "../hooks/useCategories";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-export function MenuSection() {
+interface MenuSectionProps {
+  readonly hideCta?: boolean;
+  readonly hideHeader?: boolean;
+}
+
+export function MenuSection({
+  hideCta = false,
+  hideHeader = false,
+}: MenuSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     undefined,
   );
@@ -80,24 +88,26 @@ export function MenuSection() {
       id="menu"
     >
       <div className="max-w-container-max md:px-gutter mx-auto px-4">
-        <motion.div
-          className="mb-10 text-center md:mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.8 }}
-          variants={fadeUpVariant}
-        >
-          <span className="font-label-caps text-label-caps text-outline mb-stack-sm block tracking-widest uppercase">
-            What We Brew
-          </span>
-          <h2 className="font-headline-lg md:text-headline-lg text-on-background mb-stack-md text-3xl leading-tight">
-            Curated Signatures
-          </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant mx-auto max-w-2xl">
-            A selection of our most cherished pours, each crafted to highlight
-            the nuanced profiles of our earth-conscious roasts.
-          </p>
-        </motion.div>
+        {!hideHeader && (
+          <motion.div
+            className="mb-10 text-center md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={fadeUpVariant}
+          >
+            <span className="font-label-caps text-label-caps text-outline mb-stack-sm block tracking-widest uppercase">
+              What We Brew
+            </span>
+            <h2 className="font-headline-lg md:text-headline-lg text-on-background mb-stack-md text-3xl leading-tight">
+              Curated Signatures
+            </h2>
+            <p className="font-body-md text-body-md text-on-surface-variant mx-auto max-w-2xl">
+              A selection of our most cherished pours, each crafted to highlight
+              the nuanced profiles of our earth-conscious roasts.
+            </p>
+          </motion.div>
+        )}
 
         {/* Category Tabs */}
         {!isCatsLoading && categories.length > 0 && (
@@ -106,9 +116,9 @@ export function MenuSection() {
               onClick={() => setSelectedCategory(undefined)}
               className={cn(
                 "rounded-full px-6 py-2 text-sm font-medium transition-all",
-                !selectedCategory
-                  ? "bg-primary text-white shadow-md"
-                  : "bg-surface-dim text-on-surface-variant hover:bg-surface-dim/80",
+                selectedCategory
+                  ? "bg-surface-dim text-on-surface-variant hover:bg-surface-dim/80"
+                  : "bg-primary text-white shadow-md",
               )}
             >
               All
@@ -116,10 +126,10 @@ export function MenuSection() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setSelectedCategory(cat.slug)}
+                onClick={() => setSelectedCategory(cat.id)}
                 className={cn(
                   "rounded-full px-6 py-2 text-sm font-medium transition-all",
-                  selectedCategory === cat.slug
+                  selectedCategory === cat.id
                     ? "bg-primary text-white shadow-md"
                     : "bg-surface-dim text-on-surface-variant hover:bg-surface-dim/80",
                 )}
@@ -140,14 +150,16 @@ export function MenuSection() {
           </div>
         )}
 
-        <div className="mt-10 text-center md:mt-12">
-          <Link
-            href="#menu"
-            className="border-outline text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-dim inline-block rounded-full border bg-transparent px-8 py-3 transition-all duration-300 hover:-translate-y-1"
-          >
-            View Full Menu
-          </Link>
-        </div>
+        {!hideCta && (
+          <div className="mt-10 text-center md:mt-12">
+            <Link
+              href="/menu"
+              className="border-outline text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-dim inline-block rounded-full border bg-transparent px-8 py-3 transition-all duration-300 hover:-translate-y-1"
+            >
+              View Full Menu
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
