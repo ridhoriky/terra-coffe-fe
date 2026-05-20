@@ -56,10 +56,10 @@ api.interceptors.response.use(
           // Session expired or invalid
           useAuthStore.getState().clearAuth();
           if (
-            typeof window !== "undefined" &&
-            !window.location.pathname.includes("/login")
+            globalThis.window !== undefined &&
+            !globalThis.window.location.pathname.includes("/login")
           ) {
-            window.location.href = "/login";
+            globalThis.window.location.href = "/login";
           }
           return Promise.reject(error);
         }
