@@ -6,7 +6,9 @@ import { useRegister } from "../hooks/useRegister";
 // Mock framer-motion
 vi.mock("framer-motion", () => ({
   motion: {
-    div: ({ children, ...props }: never) => <div {...props}>{children}</div>,
+    div: ({ children, ...props }: Record<string, unknown>) => (
+      <div {...props}>{children as React.ReactNode}</div>
+    ),
   },
 }));
 

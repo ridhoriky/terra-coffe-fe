@@ -5,15 +5,19 @@ import { Navbar } from "./Navbar";
 // Mock framer-motion to avoid animation issues in tests
 vi.mock("framer-motion", () => ({
   motion: {
-    div: ({ children, ...props }: never) => <div {...props}>{children}</div>,
+    div: ({ children, ...props }: Record<string, unknown>) => (
+      <div {...props}>{children as React.ReactNode}</div>
+    ),
   },
-  AnimatePresence: ({ children }: never) => <>{children}</>,
+  AnimatePresence: ({ children }: Record<string, unknown>) => (
+    <>{children as React.ReactNode}</>
+  ),
 }));
 
 // Mock ReservationDialog
 vi.mock("@/features/reservation/components/ReservationDialog", () => ({
-  ReservationDialog: ({ children }: never) => (
-    <div data-testid="reservation-dialog">{children}</div>
+  ReservationDialog: ({ children }: Record<string, unknown>) => (
+    <div data-testid="reservation-dialog">{children as React.ReactNode}</div>
   ),
 }));
 
