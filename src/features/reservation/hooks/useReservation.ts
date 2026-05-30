@@ -27,26 +27,18 @@ export const useReservation = () => {
       setSuccess(true);
       return true;
     } catch (err: unknown) {
-      let message = "Failed to create reservation. Please try again.";
+      let message =
+        err instanceof Error
+          ? err.message
+          : "Failed to create reservation. Please try again.";
 
-      if (axios.isAxiosError(err)) {
-        if (err.response?.status === 409) {
-          const availableCapacity =
-            err.response.data?.availableCapacity ??
-            err.response.data?.error?.availableCapacity;
-          if (availableCapacity) {
-            message = `Jadwal penuh. Sisa kapasitas untuk jam ini hanya ${availableCapacity} tamu.`;
-          } else {
-            message =
-              err.response?.data?.error?.message ||
-              err.response?.data?.message ||
-              message;
-          }
-        } else {
-          message =
-            err.response?.data?.error?.message ||
-            err.response?.data?.message ||
-            message;
+      if (axios.isAxiosError(err) && err.response?.status === 409) {
+        const availableCapacity =
+          err.response.data?.availableCapacity ??
+          err.response.data?.error?.availableCapacity;
+
+        if (availableCapacity !== undefined) {
+          message = `Jadwal penuh. Sisa kapasitas untuk jam ini hanya ${availableCapacity} tamu.`;
         }
       }
 

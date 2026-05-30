@@ -5,7 +5,6 @@ import { useAuthStore } from "@/stores/auth.store";
 import api from "@/lib/api";
 import { AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import axios from "axios";
 
 export const UnverifiedBanner = () => {
   const user = useAuthStore((state) => state.user);
@@ -25,10 +24,8 @@ export const UnverifiedBanner = () => {
       await api.post("/auth/resend-verification");
       setIsSuccess(true);
     } catch (err: unknown) {
-      let errorMsg = "Failed to resend email.";
-      if (axios.isAxiosError(err)) {
-        errorMsg = err.response?.data?.error?.message || errorMsg;
-      }
+      const errorMsg =
+        err instanceof Error ? err.message : "Failed to resend email.";
       setError(errorMsg);
     } finally {
       setIsLoading(false);

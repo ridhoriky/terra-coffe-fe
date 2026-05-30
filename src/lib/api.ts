@@ -18,13 +18,13 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor: handle token refresh on 401
+// Response interceptor: handle token refresh on 401 and centralize error handling
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // Prevent infinite loop if refresh itself fails (401 on /auth/refresh)
+    // 1. Handle Token Refresh
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
@@ -45,15 +45,10 @@ api.interceptors.response.use(
 
         if (data.success && data.data?.accessToken) {
           const { accessToken, user } = data.data;
-
-          // Update store
           useAuthStore.getState().setAuth(accessToken, user);
-
-          // Retry original request
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
           return api(originalRequest);
         } else {
-          // Session expired or invalid
           useAuthStore.getState().clearAuth();
           if (
             globalThis.window !== undefined &&
@@ -61,12 +56,20 @@ api.interceptors.response.use(
           ) {
             globalThis.window.location.href = "/login";
           }
-          return Promise.reject(error);
         }
       } catch (refreshError) {
-        // Network or server error during refresh
         useAuthStore.getState().clearAuth();
         return Promise.reject(refreshError);
+      }
+    }
+
+    // 2. Centralize Error Message Extraction
+    // If it's an Axios error, extract the message from the API response
+    if (axios.isAxiosError(error)) {
+      const apiMessage = error.response?.data?.error?.message;
+      if (apiMessage) {
+        // We override the default axios error message with the one from our API
+        error.message = apiMessage;
       }
     }
 

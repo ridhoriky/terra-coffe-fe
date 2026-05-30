@@ -8,7 +8,6 @@ import { useAuthStore } from "@/stores/auth.store";
 import { useRouter, useSearchParams } from "next/navigation";
 import api from "@/lib/api";
 import type { AuthResponse } from "../types";
-import axios from "axios";
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,14 +35,10 @@ export const useLogin = () => {
       setAuth(accessToken, user);
       router.push(callbackUrl);
     } catch (err: unknown) {
-      let message = "Something went wrong during login.";
-
-      if (axios.isAxiosError(err)) {
-        message = err.response?.data?.error?.message || message;
-      } else if (err instanceof Error) {
-        message = err.message;
-      }
-
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong during login.";
       setError(message);
     } finally {
       setIsLoading(false);

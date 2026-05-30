@@ -9,7 +9,6 @@ import {
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import api from "@/lib/api";
-import axios from "axios";
 
 export const useResetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -42,14 +41,8 @@ export const useResetPassword = () => {
       });
       setIsSuccess(true);
     } catch (err: unknown) {
-      let message = "Something went wrong.";
-
-      if (axios.isAxiosError(err)) {
-        message = err.response?.data?.error?.message || message;
-      } else if (err instanceof Error) {
-        message = err.message;
-      }
-
+      const message =
+        err instanceof Error ? err.message : "Something went wrong.";
       setError(message);
     } finally {
       setIsLoading(false);

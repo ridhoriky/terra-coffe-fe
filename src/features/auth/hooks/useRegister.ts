@@ -6,7 +6,6 @@ import { registerSchema, type RegisterInput } from "../schemas/auth.schema";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/api";
-import axios from "axios";
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,14 +30,10 @@ export const useRegister = () => {
       // Redirect to login after successful registration
       router.push("/login?registered=true");
     } catch (err: unknown) {
-      let message = "Something went wrong during registration.";
-
-      if (axios.isAxiosError(err)) {
-        message = err.response?.data?.error?.message || message;
-      } else if (err instanceof Error) {
-        message = err.message;
-      }
-
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong during registration.";
       setError(message);
     } finally {
       setIsLoading(false);

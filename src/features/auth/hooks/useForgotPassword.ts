@@ -8,7 +8,6 @@ import {
 } from "../schemas/auth.schema";
 import { useState } from "react";
 import api from "@/lib/api";
-import axios from "axios";
 
 export const useForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,14 +28,8 @@ export const useForgotPassword = () => {
       await api.post("/auth/forgot-password", data);
       setIsSuccess(true);
     } catch (err: unknown) {
-      let message = "Something went wrong.";
-
-      if (axios.isAxiosError(err)) {
-        message = err.response?.data?.error?.message || message;
-      } else if (err instanceof Error) {
-        message = err.message;
-      }
-
+      const message =
+        err instanceof Error ? err.message : "Something went wrong.";
       setError(message);
     } finally {
       setIsLoading(false);
