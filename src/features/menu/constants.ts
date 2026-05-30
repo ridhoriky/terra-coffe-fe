@@ -11,8 +11,7 @@ export const STATIC_FEATURED_ITEMS: MenuItem[] = [
     finalPrice: 45000,
     description:
       "Our house blend, featuring notes of dark cocoa, toasted hazelnut, and a hint of wild berry.",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD7UCs7OuD-IPy6oK1INTMOJfW2SHyD0FhTz2M5c9NHZj3uu5EyvuN6XoU6TbxwaNWV6ZNSZMWLIZ3HMfJsgJzxw2NHrbOmDqLENKVX5OriWARpUWSg-XpISO0oSsYeigzHxaLEWQ4tmFiR122p_B9wSXxEDWUCzcwmsny48vU83q6LLrd5jBATJ-V7j7wk3bPw7XNV7aM3QXkfy7lEZCxriHhMTUmcLogVO2kxGW8WMdk8M9N6cd42gSuwIUSwfP1XLpIEetlJR_k",
+    imageUrl: "/images/menu/terra-signature-espresso.png",
     category: {
       id: "cat-espresso",
       name: "Espresso",
@@ -41,8 +40,7 @@ export const STATIC_FEATURED_ITEMS: MenuItem[] = [
     finalPrice: 60000,
     description:
       "Creamy oat milk perfectly balanced with house-made caramelized brown sugar syrup.",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAIDVcJaRj5CAVMdD0WETSiOQfCqwHsm6IaihfxK1XXA2MG4fGuF3U3CbnpJDNBkmO2bmWRVpOwWmYabQfYafM3BfV4uCN9fHa4d2lHABhGLMKCE0AvbVJ_AXcJoxVMlz8yhjG6lDOg0zhXq2uXe7ku1SVdukZgWd0Z_iErriGyGgAejgiBJ_8D5oP_7LNYMANTKhgc_jveNpwopiBEWj55SrQNfOFbFZbPPYQPUenG1-ruKWH5wGnYMdEwVmIV9pMO-D6nVrM_xTA",
+    imageUrl: "/images/menu/brown-sugar-oat-latte.png",
     category: {
       id: "cat-latte",
       name: "Latte",
@@ -71,8 +69,7 @@ export const STATIC_FEATURED_ITEMS: MenuItem[] = [
     finalPrice: 55000,
     description:
       "Steeped for 24 hours, delivering a remarkably smooth, low-acidity profile with chocolate undertones.",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDJwbgpDuMEciJ4iAtUTsnHF3AIRhOoyJajbtAv7SSoJqhZUeit6X3bZUShkp4RDaS5_1vCRf-y4iEq3h7XMYykF6FKX5VF6dOE5_cpvL8laWM34uM1ehgnqFJxyCYKKnI1qwW0AKNFadMMVdJxvcfayGoDyWcqQKcVe_1kMXNhPoyMOEF9AyUVT3bXKw0xxZ0NiVKG8CZxFT96TmMubzm5w0-TjL2Pdx96SBe3AEqS3RlGb3qy0YUdIgyUsRXAmJnwgYW2s6w7JtA",
+    imageUrl: "/images/menu/cold-brew-reserve.png",
     category: {
       id: "cat-coldbrew",
       name: "Cold Brew",
@@ -101,8 +98,7 @@ export const STATIC_FEATURED_ITEMS: MenuItem[] = [
     finalPrice: 65000,
     description:
       "Ceremonial grade matcha whisked to perfection, served with lightly sweetened steamed milk.",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAspiS0WQRgcGeP63WCdJj9n91wSNQ0T1C448xgjZDGajpC_xQeXvRmVs_zsMu-lgg60U67Bu43sE0jfU8FulrWwZUfa58hFAgoS2ILQGO5MU5m6KdB2lGiZFTA6I6ecZwalbcyzREByhKOHPK1TzRrVA2z-188zRVIo4OcwiVHcQuqrLC8Jp9MLJjWHWH_IHs_3vDfW1jKnPlvOkgZsY4KB_puHcIiCV7391thNsHv2eejdzAQNuDUrKv7VEBtFTu6s7SDiVNvJBk",
+    imageUrl: "/images/menu/matcha-mist-latte.png",
     category: {
       id: "cat-matcha",
       name: "Matcha",
@@ -131,8 +127,7 @@ export const STATIC_FEATURED_ITEMS: MenuItem[] = [
     finalPrice: 50000,
     description:
       "Equal parts espresso and steamed milk, kissed with a touch of local wildflower honey.",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuALjNMCNyCdvYWbKmqx0AvgZTk0DZGO3etE5KHM-9PeGX-iEc1qw2X2ioAImw4MzhpYcztVPjeOtKOvi8gx5UAq8q13LrrvBE5oqyspUPUl7-BYNDVrdsXmFuEI7vXRCZUsjOtt-9qQQwcvOQOT0csAGD0uH47PK3p1rWahBcuPmXlZ72y0_m7P9NGQvbNw0CJRvxv1cbO47uioa0Yf7SoxmgprHMIUbGR2iFtfa6gfExxgDd70PgFnHUnw9EVI0XCkzNpzSYap7tA",
+    imageUrl: "/images/menu/honey-cortado.png",
     category: {
       id: "cat-cortado",
       name: "Cortado",
@@ -161,8 +156,7 @@ export const STATIC_FEATURED_ITEMS: MenuItem[] = [
     finalPrice: 70000,
     description:
       "A rotating selection of single-origin beans, meticulously brewed to highlight distinct regional flavors.",
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAC8xxdmnU4XI90nOK_K9i6kv7d4le4cCa_7zySslWb1r2LJP-ATCGQUeQE-bkze9PuDyyHV8DfQO7qI0-QsBR8sWgQtM2xZPPfsgNvqbev-iAJ-wMsJk6jmqDWwKi3KRIWG3mTAImaGkYU14FgGxTDDAGOGE0JylhG6STQ7Uiff-Mw7Ar-4Rgrf3hSj9fnWAgTEhciV9Yl7z6mQ4g4cOWKFjAW2t31DZ1tpLpXb8AiUPDDMMdq_sLWjXXKMp8HZoD_uQotO1WSv_U",
+    imageUrl: "/images/menu/seasonal-pourover.png",
     category: {
       id: "cat-pourover",
       name: "Pourover",

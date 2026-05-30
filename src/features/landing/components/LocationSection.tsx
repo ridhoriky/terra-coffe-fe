@@ -60,7 +60,7 @@ export function LocationSection() {
                 className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-multiply brightness-95 grayscale"
                 style={{
                   backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJso7TzHqxp5Z_l2gSbqxMzQD5q9yXvas4hZZKkX5sVgpTbLfdC6P1r-LQ0uwobtNgd2Uaas6WbT1BfRQwSEdQ8guwRn6svcS-1Kg-0B0evTxpdw6RjbyL-U4cqofyKES-R8kq82PvicZ320dYXoaR4QbH8RoISMyrPFO41zr5AF1rUBUcHYdBqY0LD_7o1NcK6Nq0nvDtUZQn4C1VxHhguR5xtaaqGOOP23YqrbqwOFKwIX_raSPxdgO6eLipHWORGCm9B805U-c')",
+                    "url('/images/landing/background_image_location.png')",
                 }}
               />
               <div className="absolute inset-0 flex items-center justify-center">

@@ -36,7 +36,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 
   try {
     if (tag) {
-      revalidateTag(tag);
+      revalidateTag(tag, "");
     }
     if (path) {
       revalidatePath(path);

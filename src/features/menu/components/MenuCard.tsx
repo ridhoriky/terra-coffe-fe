@@ -18,6 +18,9 @@ export function MenuCard({ item }: MenuCardProps) {
     }).format(amount);
   };
 
+  // Log the image URL to console for debugging if it's missing or broken
+  const displayImage = item.imageUrl || "/placeholder-coffee.jpg";
+
   return (
     <motion.div
       className="group bg-surface-white flex flex-col overflow-hidden rounded-xl border border-transparent shadow-[0_8px_24px_rgba(44,26,14,0.04)] hover:border-[#C4622D]/30"
@@ -26,17 +29,17 @@ export function MenuCard({ item }: MenuCardProps) {
       whileHover="hover"
       animate="rest"
     >
-      <div className="relative h-56 w-full md:h-48">
+      <div className="relative h-56 w-full overflow-hidden md:h-48">
         <Image
           alt={item.name}
-          className="h-full w-full object-cover"
-          src={item.imageUrl || "/placeholder-coffee.jpg"}
-          width={800}
-          height={600}
-          loading="eager"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          src={displayImage}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={false}
         />
         {item.discount.active && item.discount.label && (
-          <div className="bg-primary absolute top-4 left-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
+          <div className="bg-primary absolute top-4 left-4 z-10 rounded-full px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase shadow-sm">
             {item.discount.label}
           </div>
         )}
