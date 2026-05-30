@@ -12,6 +12,7 @@ export const useAuthInit = () => {
 
   useEffect(() => {
     const initializeAuth = async () => {
+      setInitializing(true);
       const apiUrl =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 
