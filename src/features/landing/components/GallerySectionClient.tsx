@@ -1,10 +1,11 @@
 "use client";
 
+import type { GalleryItem } from "@/features/landing/types";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeUpVariant, staggerContainer } from "@/lib/motion";
 
-const images = [
+const defaultImages = [
   {
     src: "/images/landing/Barista_pouring_coffee.png",
     alt: "Barista meticulously pouring latte art into a ceramic cup",
@@ -32,7 +33,22 @@ const images = [
   },
 ];
 
-export function GallerySection() {
+interface GallerySectionProps {
+  galleries?: GalleryItem[];
+}
+
+export function GallerySection({ galleries }: Readonly<GallerySectionProps>) {
+  let imagesToDisplay = defaultImages;
+
+  if (galleries && galleries.length > 0) {
+    imagesToDisplay = galleries.map((g, i) => ({
+      src: g.imageUrl,
+      alt: g.altText || "Gallery Image",
+      // Map classNames similar to default
+      className: i === 0 ? "md:col-span-6 md:row-span-2" : "md:col-span-3",
+    }));
+  }
+
   return (
     <section
       className="bg-terra-cream/30 w-full overflow-hidden py-16 md:py-24"
@@ -62,9 +78,9 @@ export function GallerySection() {
           className="mx-auto max-w-[1400px]"
         >
           <div className="grid grid-cols-1 gap-4 md:h-[700px] md:grid-cols-12 md:grid-rows-2">
-            {images.map((img) => (
+            {imagesToDisplay.map((img, idx) => (
               <motion.div
-                key={img.src}
+                key={img.src + idx}
                 variants={fadeUpVariant}
                 className={`group relative overflow-hidden rounded-xl shadow-sm transition-all duration-500 hover:shadow-md ${img.className} h-[300px] md:h-auto`}
               >

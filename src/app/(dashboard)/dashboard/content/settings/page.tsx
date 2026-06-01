@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2, Save } from "lucide-react";
-import type { SiteSettings } from "@/types/content";
+import type { SiteSettings } from "@/features/landing/types";
 
 export default function SettingsPage() {
   const { settings, loading, error, updateSettings } = useSettings();

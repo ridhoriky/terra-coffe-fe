@@ -1,12 +1,17 @@
 "use client";
 
+import type { SiteSettings } from "@/features/landing/types";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUpVariant } from "@/lib/motion";
 import { ReservationDialog } from "@/features/reservation/components/ReservationDialog";
 import Image from "next/image";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  settings?: SiteSettings | null;
+}
+
+export function HeroSection({ settings }: Readonly<HeroSectionProps>) {
   return (
     <header className="relative flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden pt-[88px]">
       {/* Background Image */}
@@ -31,12 +36,11 @@ export function HeroSection() {
         variants={fadeUpVariant}
       >
         <h1 className="font-headline-lg md:text-display-xl text-surface-white mb-stack-md text-4xl leading-tight drop-shadow-lg">
-          Rooted in Every Sip
+          {settings?.heroTitle || "Rooted in Every Sip"}
         </h1>
-        <p className="font-body-lg md:text-body-lg text-warm-ivory mb-stack-lg mx-auto max-w-2xl text-base drop-shadow-md">
-          A sanctuary from the city&apos;s pace. Slow down, connect, and
-          experience artisanal craft in a space designed for grounding and
-          comfort.
+        <p className="font-body-lg md:text-body-lg text-warm-ivory mb-stack-lg mx-auto max-w-2xl text-base whitespace-pre-wrap drop-shadow-md">
+          {settings?.heroSubtitle ||
+            "A sanctuary from the city's pace. Slow down, connect, and experience artisanal craft in a space designed for grounding and comfort."}
         </p>
         <div className="flex w-full flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:px-0">
           <Link

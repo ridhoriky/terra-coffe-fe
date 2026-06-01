@@ -1,11 +1,16 @@
 "use client";
 
+import type { SiteSettings } from "@/features/landing/types";
 import { motion } from "framer-motion";
 import { MapPin, Mail, Clock } from "lucide-react";
 import { fadeUpVariant } from "@/lib/motion";
 import { ReservationDialog } from "@/features/reservation/components/ReservationDialog";
 
-export function LocationSection() {
+interface LocationSectionProps {
+  settings?: SiteSettings | null;
+}
+
+export function LocationSection({ settings }: Readonly<LocationSectionProps>) {
   return (
     <section id="visit-us" className="bg-terra-surface py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
@@ -31,10 +36,9 @@ export function LocationSection() {
                   <h4 className="text-terra-espresso mb-1 text-lg font-bold">
                     Our Sanctuary
                   </h4>
-                  <p className="text-terra-taupe">
-                    124 Artisanal Lane, Heritage District
-                    <br />
-                    New York, NY 10012
+                  <p className="text-terra-taupe whitespace-pre-wrap">
+                    {settings?.locationText ||
+                      "124 Artisanal Lane, Heritage District\nNew York, NY 10012"}
                   </p>
                 </div>
               </div>
@@ -45,10 +49,10 @@ export function LocationSection() {
                   <h4 className="text-terra-espresso mb-1 text-lg font-bold">
                     Get in Touch
                   </h4>
-                  <p className="text-terra-taupe">
-                    hello@terracoffee.com
+                  <p className="text-terra-taupe whitespace-pre-wrap">
+                    {settings?.contactEmail || "hello@terracoffee.com"}
                     <br />
-                    (212) 555-0198
+                    {settings?.contactPhone || "(212) 555-0198"}
                   </p>
                 </div>
               </div>

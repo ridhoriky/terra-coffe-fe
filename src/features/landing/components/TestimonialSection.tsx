@@ -1,38 +1,47 @@
 "use client";
 
+import type { Testimonial as TestimonialType } from "@/features/landing/types";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { fadeUpVariant } from "@/lib/motion";
 
-const testimonials = [
+const defaultTestimonials = [
   {
-    id: 1,
+    id: "1",
     quote:
       "The most peaceful corner in the city. The brown sugar oat latte is transformative, and the atmosphere makes me want to stay for hours.",
     author: "ELARA VANCE",
+    rating: 5,
   },
   {
-    id: 2,
+    id: "2",
     quote:
       "Terra Coffee understands craft. Their pourover selection is always on point, highlighting unique notes I've never tasted before.",
     author: "JULIAN REED",
+    rating: 5,
   },
   {
-    id: 3,
+    id: "3",
     quote:
       "A truly grounding space. I come here to escape the rush, and I always leave feeling more connected and refreshed. Simply beautiful.",
     author: "MAYA SHOR",
+    rating: 5,
   },
 ];
 
-export function TestimonialSection() {
+interface TestimonialSectionProps {
+  testimonials?: TestimonialType[];
+}
+
+export function TestimonialSection({
+  testimonials,
+}: Readonly<TestimonialSectionProps>) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction: "left" | "right") => {
+  const scroll = (direction: "left" | "right"): void => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      // Scroll by width of one card, or fallback to 300
       const scrollAmount =
         current.querySelector(".testimonial-card")?.clientWidth || 300;
       current.scrollBy({
@@ -41,6 +50,18 @@ export function TestimonialSection() {
       });
     }
   };
+
+  const listToDisplay =
+    testimonials && testimonials.length > 0
+      ? testimonials
+          .filter((t) => t.isVisible)
+          .map((t) => ({
+            id: t.id,
+            quote: t.message,
+            author: t.name,
+            rating: t.rating,
+          }))
+      : defaultTestimonials;
 
   return (
     <section className="bg-espresso-dark text-terra-cream w-full overflow-hidden py-16 md:py-24">
@@ -66,14 +87,13 @@ export function TestimonialSection() {
             className="-mx-4 flex snap-x snap-mandatory gap-8 overflow-x-auto px-4 pb-8"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {/* Adding a style tag to hide webkit scrollbar specifically for this container */}
             <style jsx>{`
               div::-webkit-scrollbar {
                 display: none;
               }
             `}</style>
 
-            {testimonials.map((t) => (
+            {listToDisplay.map((t) => (
               <motion.div
                 key={t.id}
                 initial="hidden"
@@ -84,23 +104,20 @@ export function TestimonialSection() {
               >
                 <Quote className="text-primary absolute top-6 left-6 h-16 w-16 opacity-40" />
                 <div className="text-primary relative mb-6 flex gap-1">
-                  <Star className="h-5 w-5 fill-current" />
-                  <Star className="h-5 w-5 fill-current" />
-                  <Star className="h-5 w-5 fill-current" />
-                  <Star className="h-5 w-5 fill-current" />
-                  <Star className="h-5 w-5 fill-current" />
+                  {Array.from({ length: t.rating || 5 }).map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-current" />
+                  ))}
                 </div>
                 <blockquote className="text-surface-white relative mb-8 text-lg leading-relaxed italic">
                   &quot;{t.quote}&quot;
                 </blockquote>
-                <cite className="text-primary block text-xs font-bold tracking-widest not-italic">
+                <cite className="text-primary block text-xs font-bold tracking-widest uppercase not-italic">
                   — {t.author}
                 </cite>
               </motion.div>
             ))}
           </div>
 
-          {/* Desktop visual hint / controls */}
           <div className="mt-8 hidden justify-center gap-4 md:flex">
             <button
               onClick={() => scroll("left")}

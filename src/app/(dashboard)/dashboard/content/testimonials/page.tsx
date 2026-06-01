@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/table";
 import { toast } from "sonner";
 import { Loader2, Plus, Trash2, Star } from "lucide-react";
-import type { Testimonial } from "@/types/content";
+import type { Testimonial } from "@/features/landing/types";
 
 export default function TestimonialsPage() {
   const { testimonials, loading, deleteTestimonial, createTestimonial } =

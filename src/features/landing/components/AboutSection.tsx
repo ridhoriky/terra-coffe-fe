@@ -1,11 +1,16 @@
 "use client";
 
+import type { SiteSettings } from "@/features/landing/types";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUpVariant } from "@/lib/motion";
 import Image from "next/image";
 
-export function AboutSection() {
+interface AboutSectionProps {
+  settings?: SiteSettings | null;
+}
+
+export function AboutSection({ settings }: Readonly<AboutSectionProps>) {
   return (
     <section
       className="py-section-padding-v-mobile md:py-section-padding-v-desktop bg-terra-cream"
@@ -26,17 +31,9 @@ export function AboutSection() {
             <h2 className="font-headline-lg md:text-headline-lg text-on-background mb-stack-md text-3xl leading-tight">
               Crafting a Sanctuary in the City
             </h2>
-            <p className="font-body-md text-body-md text-on-surface-variant mb-stack-md">
-              Terra Coffee was born from a simple desire: to create a tactile,
-              grounding experience amidst the urban rush. We source our beans
-              with profound respect for the earth and the farmers who nurture
-              them, roasting each batch to coax out its intrinsic warmth.
-            </p>
-            <p className="font-body-md text-body-md text-on-surface-variant mb-stack-lg">
-              Our space is an extension of our philosophy—minimalist yet deeply
-              textured, designed to foster intentionality and calm. Here, every
-              cup is an invitation to pause, breathe, and find comfort in the
-              craft.
+            <p className="font-body-md text-body-md text-on-surface-variant mb-stack-md whitespace-pre-wrap">
+              {settings?.aboutText ||
+                "Terra Coffee was born from a simple desire: to create a tactile, grounding experience amidst the urban rush. We source our beans with profound respect for the earth and the farmers who nurture them, roasting each batch to coax out its intrinsic warmth.\n\nOur space is an extension of our philosophy—minimalist yet deeply textured, designed to foster intentionality and calm. Here, every cup is an invitation to pause, breathe, and find comfort in the craft."}
             </p>
             <Link
               href="#visit-us"
